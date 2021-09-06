@@ -1,12 +1,14 @@
 <div class="main-content">
     <div class="header-content">
 
+        <!--Display Data-->
         <div class="add-detail-text">
             Person Details
         </div>
 
-        <a class="add-button" routerLink="/addform">
-            <img src="../assets/icons/add-24px.svg" alt="">Add User
+        <!--Add icon-->
+        <a class="add-button" routerLink="/add">
+            <img src="../assets/icons/add-24px.svg" alt="">Add Person
         </a>
     </div>
 
@@ -23,22 +25,24 @@
                 <th></th>
             </tr>
 
-            <!-- <tr *ngFor="let address of addressbook">
-                <td>{{}}</td>
-                <td>{{}}</td>
+            <!--Table Data-->
+            <tr *ngFor="let address of addressDetails">
+                <td>{{address.name}}</td>
+                <td>{{address.address}}</td>
                 <td>
-                    {{}}
+                    {{address.city}}
                 </td>
-                <td>{{}}</td>
-                <td>{{}}</td>
+                <td>{{address.state}}</td>
+                <td>{{address.phoneNo}}</td>
+                <td>{{address.zip}}</td>
                 <td>
-                    <img id={{employee.empId}} (click)="remove(employee.empId)"
+                    <img id={{address.id}} (click)="remove(address)"
                         src="../assets/icons/delete-black-18dp.svg"
                         alt="delete">
-                    <img id={{employee.empId}} (click)="update(employee)" 
+                    <img id={{address.id}} (click)="update(address)"
                         src="../assets/icons/create-black-18dp.svg" alt="edit">
                 </td>
-            </tr> -->
+            </tr>
         </table>
     </div>
 </div>

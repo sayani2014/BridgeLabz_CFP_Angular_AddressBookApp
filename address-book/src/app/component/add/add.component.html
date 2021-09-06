@@ -1,0 +1,107 @@
+<div class="form-content">
+    <form class="form" [formGroup]="addressFormGroup" (ngSubmit)="onSubmit()">
+
+        <!--Form Header-->
+        <div class="form-head">
+            <span class="head">PERSON ADDRESS FORM</span>
+
+            <!--Cancel Button-->
+            <a routerLink="/home">
+                <img src="../assets/images/cancel.jpeg" alt="" width="3%" id="cancel-icon" class="close" style="float: right">
+            </a>
+        </div>
+
+        <!--Name Content with error details-->
+        <div class="column-content">
+            <mat-label class="label text" for="name">Full Name</mat-label>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <input class="input" matInput ngDefaultControl formControlName="name" type="search" autocomplete="off">
+
+                <mat-error *ngIf="checkError('name', 'required')">Name is required</mat-error>
+                <mat-error *ngIf="checkError('name', 'pattern')">Name should start with upper case and should have minimum of 3 characters</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!--Phone Number Content with error details-->
+        <div class="column-content-style">
+            <mat-label class="label text" for="phone">Phone Number</mat-label>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <input class="input" matInput ngDefaultControl formControlName="phoneNo" type="search" autocomplete="off">
+
+                <mat-error *ngIf="checkError('phoneNo', 'required')">Phone Number is required</mat-error>
+                <mat-error *ngIf="checkError('phoneNo', 'pattern')">Phone number should be between 6-9 and length should be equal to 10</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!--Address Content with error details-->
+        <div class="column-content-style">
+            <mat-label class="label text" for="address">Address</mat-label>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <textarea matInput class="input" style="height:60px" ngDefaultControl formControlName="address" type="search" autocomplete="off"></textarea>
+
+                <mat-error *ngIf="checkError('address', 'required')">Address is required</mat-error>
+            </mat-form-field>
+        </div>
+        
+        <div class="row-content-address">
+
+            <!--State Dropdown Content-->
+            <div class="state-container subAddress">
+                <mat-label class="label text" for="state">State</mat-label>
+                <mat-form-field appearance="outline">
+                    <mat-label>Select State</mat-label>
+                    <mat-select (selectionChange)="changeState($event)" ngDefaultControl formControlName="state">
+                        <mat-option *ngFor="let stateName of states" [value]="stateName.name">
+                            {{stateName.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!--City Dropdown Content-->        
+            <div class="city-container subAddress">
+                <mat-label class="label text" for="city">City</mat-label>
+                <mat-form-field appearance="outline">     
+                    <mat-label>Select City</mat-label>
+                    <mat-select ngDefaultControl formControlName="city">
+                        <mat-option *ngFor="let city of cities" [value]="city.cityName">
+                            {{city.cityName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!--Zip Content with error details-->
+            <div class="zip-container subAddress">
+                <mat-label class="label text" for="zip">Zip</mat-label>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <input class="input" matInput ngDefaultControl formControlName="zip" type="search" autocomplete="off">
+
+                    <mat-error *ngIf="checkError('zip', 'required')">Zip is required</mat-error>
+                    <mat-error *ngIf="checkError('zip', 'pattern')">Zip should be only numeric and length should be equal to 6</mat-error>
+                </mat-form-field>
+            </div> 
+        </div>
+
+        <!--Buttons: Add and Edit buttons based on the url page opened-->
+        <!--If the add page opens, Add and Reset button is displayed-->
+        <div *ngIf="router.url === '/add'; else elseBlock">
+            <div class="add-reset">
+                <button mat-raised-button type="submit" class="addButton button" id="addButton">Add</button>
+                <button mat-raised-button type="reset" class="resetButton button">Reset</button>
+            </div>
+        </div>
+        
+        <!--Else Edit and Cancel Button is displayed-->
+        <ng-template #elseBlock>
+            <div class="add-reset">
+                <button mat-raised-button type="submit" class="addButton button" id="addButton">Update</button>
+                <a routerLink="/home">
+                    <button mat-raised-button color="accent" class="button cancelButton">Cancel</button>
+                </a>
+            </div>
+        </ng-template>
+        
+    </form>
+</div>
+

@@ -1,10 +1,5 @@
-.container {
-    display: flex;
-    flex-direction: column;
-}
-
 .header {
-    padding: 15px 0;
+    padding: 20px 0;
     background-color: #fff;
 }
 
@@ -13,14 +8,12 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 0px solid green;
 }
 
 .logo-content {
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 0px solid green;
     width: 80%;
 }
 
@@ -37,10 +30,13 @@
     font: normal normal bold 20px/25px Montserrat;
     font-family: "Montserrat", sans-serif;
     letter-spacing: 0px;
-    color: blue;
+    color: rgb(0, 140, 255);
     text-transform: capitalize;
+    padding-left: 10px;
 }
 
 .add-book {
     color: #42515f;
 }
+
+
