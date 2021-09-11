@@ -25,6 +25,7 @@ export class HttpService {
   private handleError() {
     return (error: HttpErrorResponse) => {
       let errorMessage = 'Unknown error!';
+    
       // if (error.error instanceof ErrorEvent) {
       //   // Client-side errors
       //   errorMessage = `Error: ${error.error.message}`;
@@ -37,18 +38,7 @@ export class HttpService {
       let checkError:number = 0;
       if(`${error.status}` === checkError.toString()) {
         errorMessage = "Server temporarily unavailable!";
-      }
-      for (let i = 400; i < 500; i++ ) {
-        if(`${error.status}` === i.toString()) {
-          errorMessage = "Client Error!";
-        }
-      }
-      for (let i = 500; i < 512; i++ ) {
-        if(`${error.status}` === i.toString()) {
-          errorMessage = "Server Error!";
-        }
-      }
-      
+      }  
       this._snackBar.openSnackBar(errorMessage,'X','red-snackbar');
       return throwError(errorMessage);
     }
@@ -72,7 +62,6 @@ export class HttpService {
    */
 
   postData(data): Observable<any> {
-    console.log(data);
     return this.httpClient.post(this.baseURL + "addAddressDetails", data).pipe(catchError(this.handleError()));
   }
 
@@ -100,6 +89,17 @@ export class HttpService {
 
   updateData(id: number, data: Addressbook): Observable<any> {
     return this.httpClient.put(this.baseURL + "updateAddressDetails?id=" +id, data).pipe(catchError(this.handleError()));
+  }
+
+  getStateDetails(): Observable<any> {
+    return this.httpClient.get(this.baseURL + "getStateDetails").pipe(catchError(this.handleError()));
+  }
+
+  getDataByID(id): Observable<any> {
+    return this.httpClient.get(this.baseURL + "getAddressDetailsByID",{
+      headers: new HttpHeaders(),
+      params: new HttpParams().append('id', id),
+    }).pipe(catchError(this.handleError()));
   }
 
 }

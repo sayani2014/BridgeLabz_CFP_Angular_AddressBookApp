@@ -50,9 +50,9 @@
                 <mat-label class="label text" for="state">State</mat-label>
                 <mat-form-field appearance="outline">
                     <mat-label>Select State</mat-label>
-                    <mat-select (selectionChange)="changeState($event)" ngDefaultControl formControlName="state">
-                        <mat-option *ngFor="let stateName of states" [value]="stateName.name">
-                            {{stateName.name}}
+                    <mat-select (selectionChange)="getCity($event.source.value)" ngDefaultControl formControlName="state">
+                        <mat-option *ngFor="let state of states" [value]="state">
+                            {{state}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -64,8 +64,8 @@
                 <mat-form-field appearance="outline">     
                     <mat-label>Select City</mat-label>
                     <mat-select ngDefaultControl formControlName="city">
-                        <mat-option *ngFor="let city of cities" [value]="city.cityName">
-                            {{city.cityName}}
+                        <mat-option *ngFor="let city of cities" [value]="city">
+                            {{city}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
