@@ -8,4 +8,4 @@
     - perform CRUD operations.
     - perform validation of the form fields.
     - display success and error message using snack_bar.
-   
+3. Ability to update the edit-form page to implement the concept of cascading dropdown for state and city.
